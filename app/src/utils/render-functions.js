@@ -1,3 +1,4 @@
+import { Author } from "../models/has-many.js";
 
 export const renderAuthorsDropdown = (authors) => {
   const dropdown = document.getElementById('author');
@@ -11,7 +12,7 @@ export const renderAuthorsDropdown = (authors) => {
   });
 };
 
-export const renderForm = (authors) => {
+export const renderForm = () => {
   const form = document.querySelector('#app');
   // formContainer.innerHTML = ''; // Clear previous form content
 
@@ -33,7 +34,7 @@ export const renderForm = (authors) => {
       <form id="book-form">
           <label for="author">Select Author:</label>
           <select id="author" required>
-              ${authors.map(author => `<option value="${author.id}">${author.name}</option>`).join('')}
+              ${Author.getAllAuthors().map(author => `<option value="${author.id}">${author.name}</option>`).join('')}
           </select>
           <label for="book-title">Book Title:</label>
           <input type="text" id="book-title" required>
