@@ -1,5 +1,6 @@
-import { Book } from "../models/belongs-to.js";
+import Book from "../models/belongs-to.js";
 import { Author } from "../models/has-many.js";
+import { renderBooks } from "./render-functions.js";
 
 
 export const addAuthor = (name) => {
@@ -9,12 +10,14 @@ export const addAuthor = (name) => {
   renderAuthorsDropdown(authors);
 };
 
-export const addBook = (authorId, title) => {
-  const author = authors.find(author => author.id === authorId);
-  if (author) {
-      author.addBook(new Book(title));
-      renderAuthor(author);
-  }
+export const addNewBook = (formObj) => {
+  console.log(formObj.name);
+  const allAuthors = Author.getAllAuthors();
+  const author = allAuthors.filter(author => author.name === formObj.name);
+  console.log(author[0])
+  author[0].addBook(formObj.title, formObj.name);
+  renderBooks(formObj.name);
+ 
 };
 
 export const handleAuthor =(e) => {

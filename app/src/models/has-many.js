@@ -14,7 +14,7 @@ export class Author {
 
   addBook(title, author) {
     this.#books.push(new Book(title, author));
-    return newBook;
+    return;
     
   };
 
